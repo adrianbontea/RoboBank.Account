@@ -8,7 +8,7 @@ using RoboBank.Account.Service.Models;
 
 namespace RoboBank.Account.Service.Controllers
 {
-    [ElmahAccountExceptionHandling]
+    [AIAccountExceptionHandling]
     public class AccountController : ApiController
     {
         private readonly AccountApplicationService _accountApplicationService;
