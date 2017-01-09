@@ -1,41 +1,41 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace RoboBank.Account.Domain.Tests
 {
-    [TestClass]
+
     public class AccountTests
     {
-        [TestMethod]
+        [Fact]
         public void CanDebit_ShouldReturnTrue_WhenBallanceIsGreaterThanAmount()
         {
             // Arrange
             var account = new Account {Balance = 100};
 
             // Act & Assert
-            Assert.IsTrue(account.CanDebit(99));
+            Assert.True(account.CanDebit(99));
         }
 
-        [TestMethod]
+        [Fact]
         public void CanDebit_ShouldReturnTrue_WhenBallanceIsEqualToAmount()
         {
             // Arrange
             var account = new Account { Balance = 100 };
 
             // Act & Assert
-            Assert.IsTrue(account.CanDebit(100));
+            Assert.True(account.CanDebit(100));
         }
 
-        [TestMethod]
+        [Fact]
         public void CanDebit_ShouldReturnFalse_WhenBallanceIsSmallerThanAmount()
         {
             // Arrange
             var account = new Account { Balance = 100 };
 
             // Act & Assert
-            Assert.IsFalse(account.CanDebit(101));
+            Assert.False(account.CanDebit(101));
         }
 
-        [TestMethod]
+        [Fact]
         public void Debit_ShouldDecreaseBallance_WhenBallanceIsGreaterThanAmount()
         {
             // Arrange
@@ -45,10 +45,10 @@ namespace RoboBank.Account.Domain.Tests
             account.Debit(99);
 
             // Assert
-            Assert.AreEqual(1, account.Balance);
+            Assert.Equal(1, account.Balance);
         }
 
-        [TestMethod]
+        [Fact]
         public void Debit_ShouldDecreaseBallance_WhenBallanceIsEqualToAmount()
         {
             // Arrange
@@ -58,10 +58,10 @@ namespace RoboBank.Account.Domain.Tests
             account.Debit(100);
 
             // Assert
-            Assert.AreEqual(0, account.Balance);
+            Assert.Equal(0, account.Balance);
         }
 
-        [TestMethod]
+        [Fact]
         public void Debit_ShouldNotDecreaseBallance_WhenBallanceIsSmallerThanAmount()
         {
             // Arrange
@@ -71,10 +71,10 @@ namespace RoboBank.Account.Domain.Tests
             account.Debit(101);
 
             // Assert
-            Assert.AreEqual(100, account.Balance);
+            Assert.Equal(100, account.Balance);
         }
 
-        [TestMethod]
+        [Fact]
         public void Credit_ShouldIncreaseBallance()
         {
             // Arrange
@@ -84,7 +84,7 @@ namespace RoboBank.Account.Domain.Tests
             account.Credit(50);
 
             // Assert
-            Assert.AreEqual(150, account.Balance);
+            Assert.Equal(150, account.Balance);
         }
     }
 }
