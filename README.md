@@ -1,2 +1,2 @@
 # RoboBank.Account
-RoboBank Account Service
+.net framework 4.6 implementation of RoboBank Account Service
