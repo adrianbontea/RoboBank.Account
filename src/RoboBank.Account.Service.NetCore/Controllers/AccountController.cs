@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using RoboBank.Account.Application;
-using RoboBank.Account.Service.Custom;
 using RoboBank.Account.Service.NetCore.Models;
 using Microsoft.AspNetCore.Mvc;
+using RoboBank.Account.Service.NetCore.Custom;
 
 namespace RoboBank.Account.Service.Controllers
 {
@@ -17,10 +17,15 @@ namespace RoboBank.Account.Service.Controllers
             _accountApplicationService = accountApplicationService;
         }
 
-        [Route("transfers")]
-        [HttpPost]
+        [HttpGet("/")]
+        public IActionResult Index()
+        {
+            return Redirect("/swagger/ui");
+        }
+
+        [HttpPost("/transfers")]
         [ServiceFilter(typeof(SaveUnitOfWorkChanges))]
-        public async Task<IActionResult> TransferAsync(TransferModel transferModel)
+        public async Task<IActionResult> TransferAsync([FromBody]TransferModel transferModel)
         {
             var transferInfo = Mapper.Map<TransferModel, TransferInfo>(transferModel);
             await _accountApplicationService.TransferAsync(transferInfo);
@@ -28,8 +33,8 @@ namespace RoboBank.Account.Service.Controllers
             return Ok();
         }
 
-        [Route("accounts/cards/{cardId}/withdrawals")]
-        [HttpPost]
+
+        [HttpPost("/accounts/cards/{cardId}/withdrawals")]
         [ServiceFilter(typeof(SaveUnitOfWorkChanges))]
         public async Task<IActionResult> WithdrawAsync(string cardId, AmountModel amountModel)
         {
@@ -39,24 +44,21 @@ namespace RoboBank.Account.Service.Controllers
             return Ok();
         }
 
-        [Route("accounts/cards/{cardId}/balance")]
-        [HttpGet]
+        [HttpGet("/accounts/cards/{cardId}/balance")]
         public async Task<IActionResult> GetBalanceAsync(string cardId)
         {
             var balanceInfo = await _accountApplicationService.GetBalanceAsync(cardId);
             return Ok(Mapper.Map<AmountInfo, AmountModel>(balanceInfo));
         }
 
-        [Route("customers/{customerId}/accounts")]
-        [HttpGet]
+        [HttpGet("/customers/{customerId}/accounts")]
         public async Task<IActionResult> GetAccountsAsync(string customerId)
         {
             var accountsInfo = await _accountApplicationService.GetCustomerAccountsAsync(customerId);
             return Ok(Mapper.Map<IEnumerable<AccountInfo>, IEnumerable<AccountModel>>(accountsInfo));
         }
 
-        [Route("accounts/{accountId}")]
-        [HttpGet]
+        [HttpGet("/accounts/{accountId}")]
         public async Task<IActionResult> GetAccountAsync(string accountId)
         {
             var accountInfo = await _accountApplicationService.GetAccountAsync(accountId);

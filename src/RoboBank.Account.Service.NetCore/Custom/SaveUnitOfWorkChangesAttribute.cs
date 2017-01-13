@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using RoboBank.Account.Application.Adapters.NetStandard;
 
-namespace RoboBank.Account.Service.Custom
+namespace RoboBank.Account.Service.NetCore.Custom
 {
     public class SaveUnitOfWorkChanges : ActionFilterAttribute
     {

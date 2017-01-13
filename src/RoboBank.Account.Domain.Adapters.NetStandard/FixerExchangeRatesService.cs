@@ -10,6 +10,11 @@ namespace RoboBank.Account.Domain.Adapters.NetStandard
     {
         public async Task<decimal> GetExchangeRateAsync(string fromCurrency, string toCurrency)
         {
+            if(fromCurrency == toCurrency)
+            {
+                return 1;
+            }
+
             var httpClient = new HttpClient();
             var response = await httpClient.GetAsync($"http://api.fixer.io/latest?base={fromCurrency}");
 
@@ -17,7 +22,7 @@ namespace RoboBank.Account.Domain.Adapters.NetStandard
 
             if (responseModel.Rates.Properties.ContainsKey(toCurrency))
             {
-                return decimal.Parse(responseModel.Rates.Properties[toCurrency].Value.ToString());
+                return decimal.Parse(responseModel.Rates.Properties[toCurrency].ToString());
             }
 
             throw new ArgumentException("Invalid target currency");
