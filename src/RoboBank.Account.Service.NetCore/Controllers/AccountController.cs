@@ -36,7 +36,7 @@ namespace RoboBank.Account.Service.Controllers
 
         [HttpPost("/accounts/cards/{cardId}/withdrawals")]
         [ServiceFilter(typeof(SaveUnitOfWorkChanges))]
-        public async Task<IActionResult> WithdrawAsync(string cardId, AmountModel amountModel)
+        public async Task<IActionResult> WithdrawAsync(string cardId, [FromBody]AmountModel amountModel)
         {
             var amountInfo = Mapper.Map<AmountModel, AmountInfo>(amountModel);
             await _accountApplicationService.WithdrawAsync(cardId, amountInfo);
