@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using AutoFixture.Xunit2;
 using Moq;
 using Xunit;
-using Ploeh.AutoFixture.Xunit2;
 
 namespace RoboBank.Account.Domain.Tests
 {
