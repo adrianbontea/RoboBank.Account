@@ -1,11 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Threading.Tasks;
-using RoboBank.Account.Application.Ports;
 using RoboBank.Account.Domain;
 
 namespace RoboBank.Account.Application.Adapters
 {
-    public class CardRepository : ICardRepository
+    public class CardRepository : AccountApplicationService.ICardRepository
     {
         private readonly UnitOfWork _unitOfWork;
 

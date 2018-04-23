@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.ServiceBus.Messaging;
-using RoboBank.Account.Application.Ports;
 using RoboBank.Account.Domain;
 
 namespace RoboBank.Account.Application.Adapters
 {
-    public class ServiceBusEventService : IEventService
+    public class ServiceBusEventService : AccountApplicationService.IEventService
     {
         private readonly QueueClient _queueClient;
 

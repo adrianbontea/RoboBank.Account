@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
-using RoboBank.Account.Application.Ports;
 using RoboBank.Account.Domain;
 
 namespace RoboBank.Account.Application.Adapters.NetStandard
 {
-    public class ServiceBusEventService : IEventService
+    public class ServiceBusEventService : AccountApplicationService.IEventService
     {
 
         public async Task Publish(AccountEvent evt)

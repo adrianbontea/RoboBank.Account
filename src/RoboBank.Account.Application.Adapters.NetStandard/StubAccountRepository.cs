@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RoboBank.Account.Application.Ports;
-using System.Text;
 
 namespace RoboBank.Account.Application.Adapters.NetStandard
 {
-    public class StubAccountRepository : IAccountRepository
+    public class StubAccountRepository : AccountApplicationService.IAccountRepository
     {
         private const string OwnCustomerId = "RoboBank";
         private readonly IEnumerable<Domain.Account> _cache = new List<Domain.Account>

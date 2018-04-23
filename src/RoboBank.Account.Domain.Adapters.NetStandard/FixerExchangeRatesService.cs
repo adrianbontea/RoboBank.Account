@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
-using RoboBank.Account.Domain.Ports;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System;
 
 namespace RoboBank.Account.Domain.Adapters.NetStandard
 {
-    public class FixerExchangeRatesService : IExchangeRatesService
+    public class FixerExchangeRatesService : FundsTransferService.IExchangeRatesService
     {
         public async Task<decimal> GetExchangeRateAsync(string fromCurrency, string toCurrency)
         {

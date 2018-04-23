@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using RoboBank.Account.Domain.Ports;
 
 namespace RoboBank.Account.Domain
 {
@@ -53,5 +52,12 @@ namespace RoboBank.Account.Domain
                     }
             };
         }
+
+        #region Ports
+        public interface IExchangeRatesService
+        {
+            Task<decimal> GetExchangeRateAsync(string fromCurrency, string toCurrency);
+        }
+        #endregion
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using FixerSharp;
-using RoboBank.Account.Domain.Ports;
 
 namespace RoboBank.Account.Domain.Adapters
 {
-    public class FixerExchangeRatesService : IExchangeRatesService
+    public class FixerExchangeRatesService : FundsTransferService.IExchangeRatesService
     {
         public async Task<decimal> GetExchangeRateAsync(string fromCurrency, string toCurrency)
         {

@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RoboBank.Account.Application.Ports;
 using RoboBank.Account.Domain;
-using System.Text;
 
 namespace RoboBank.Account.Application.Adapters.NetStandard
 {
-    public class StubCardRepository: ICardRepository
+    public class StubCardRepository: AccountApplicationService.ICardRepository
     {
         private readonly IEnumerable<Card> _cache = new List<Card>
         {

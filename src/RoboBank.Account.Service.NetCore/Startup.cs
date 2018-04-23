@@ -5,10 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RoboBank.Account.Application;
 using RoboBank.Account.Application.Adapters.NetStandard;
-using RoboBank.Account.Application.Ports;
 using RoboBank.Account.Domain;
 using RoboBank.Account.Domain.Adapters.NetStandard;
-using RoboBank.Account.Domain.Ports;
 using RoboBank.Account.Service.NetCore.Custom;
 using Swashbuckle.Swagger.Model;
 
@@ -39,11 +37,11 @@ namespace RoboBank.Account.Service.NetCore
             services.AddMvc();
             services.AddRouting();
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddTransient<IAccountRepository, AccountRepository>();
-            services.AddTransient<ICardRepository, CardRepository>();
-            services.AddTransient<IMapper, Mapper>();
-            services.AddTransient<IExchangeRatesService, FixerExchangeRatesService>();
-            services.AddTransient<IEventService, ServiceBusEventService>();
+            services.AddTransient<AccountApplicationService.IAccountRepository, AccountRepository>();
+            services.AddTransient<AccountApplicationService.ICardRepository, CardRepository>();
+            services.AddTransient<AccountApplicationService.IMapper, Mapper>();
+            services.AddTransient<FundsTransferService.IExchangeRatesService, FixerExchangeRatesService>();
+            services.AddTransient<AccountApplicationService.IEventService, ServiceBusEventService>();
             services.AddTransient<FundsTransferService>();
             services.AddTransient<AccountApplicationService>();
             services.AddScoped<UnitOfWork>();

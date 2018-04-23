@@ -1,6 +1,6 @@
 ﻿namespace RoboBank.Account.Application.Adapters.NetStandard
 {
-    public class Mapper : Ports.IMapper
+    public class Mapper : AccountApplicationService.IMapper
     {
         public TDestination Map<TSource, TDestination>(TSource source)
         {

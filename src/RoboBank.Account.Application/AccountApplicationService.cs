@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using RoboBank.Account.Application.Ports;
 using RoboBank.Account.Domain;
 
 namespace RoboBank.Account.Application
@@ -106,5 +105,31 @@ namespace RoboBank.Account.Application
             var account = await _accountRepository.GetByIdAsync(accountId);
             return _mapper.Map<Domain.Account, AccountInfo>(account);
         }
+
+        #region Ports
+        public interface IAccountRepository
+        {
+            Task<IEnumerable<Domain.Account>> GetByCustomerIdAsync(string customerId);
+
+            Task<Domain.Account> GetByIdAsync(string id);
+
+            Task<Domain.Account> GetOwnAccountByCurrencyAsync(string currency);
+        }
+
+        public interface ICardRepository
+        {
+            Task<Card> GetByIdAsync(string id);
+        }
+
+        public interface IEventService
+        {
+            Task Publish(AccountEvent evt);
+        }
+
+        public interface IMapper
+        {
+            TDestination Map<TSource, TDestination>(TSource source);
+        }
+        #endregion
     }
 }

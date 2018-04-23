@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Moq;
-using RoboBank.Account.Domain.Ports;
 using Xunit;
 using Ploeh.AutoFixture.Xunit2;
 
@@ -24,7 +23,7 @@ namespace RoboBank.Account.Domain.Tests
 
         [Theory]
         [AutoMoqData]
-        public void TransferAsync_ThrowsException_WhenSourceAccountDoesNotHaveEnoughFunds([Frozen]Mock<IExchangeRatesService> exchangeRateServiceMock, FundsTransferService sut)
+        public void TransferAsync_ThrowsException_WhenSourceAccountDoesNotHaveEnoughFunds([Frozen]Mock<FundsTransferService.IExchangeRatesService> exchangeRateServiceMock, FundsTransferService sut)
         {
             // Arrange
             exchangeRateServiceMock.Setup(m => m.GetExchangeRateAsync("USD", "EUR"))
@@ -40,7 +39,7 @@ namespace RoboBank.Account.Domain.Tests
 
         [Theory]
         [AutoMoqData]
-        public void TransferAsync_ShouldCorrectlyUpdateAccounts_WhenEverythingIsOK([Frozen]Mock<IExchangeRatesService> exchangeRateServiceMock, FundsTransferService sut)
+        public void TransferAsync_ShouldCorrectlyUpdateAccounts_WhenEverythingIsOK([Frozen]Mock<FundsTransferService.IExchangeRatesService> exchangeRateServiceMock, FundsTransferService sut)
         {
             // Arrange
             var sourceAccount = new Account {Currency = "EUR", Balance = 200};

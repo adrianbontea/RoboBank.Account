@@ -2,11 +2,10 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using RoboBank.Account.Application.Ports;
 
 namespace RoboBank.Account.Application.Adapters
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : AccountApplicationService.IAccountRepository
     {
         private const string OwnCustomerId = "RoboBank";
 
